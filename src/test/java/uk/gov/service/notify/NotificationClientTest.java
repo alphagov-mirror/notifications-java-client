@@ -96,12 +96,17 @@ public class NotificationClientTest {
         assertEquals(expectedResult.getString("file"), response.getString("file"));
     }
 
-    @Test(expected = NotificationClientException.class)
-    public void testPrepareUploadThrowsExceptionWhenExceeds2MB() throws NotificationClientException {
+    public void testPrepareUploadThrowsExceptionWhenExceeds2MB(){
         char[] data = new char[(2*1024*1024)+50];
         byte[] documentContents = new String(data).getBytes();
 
-        NotificationClient.prepareUpload(documentContents);
+        try {
+            NotificationClient.prepareUpload(documentContents);
+        }catch(NotificationClientException e){
+            assert e.getHttpResult() == 413;
+            assert e.getMessage() == "Document is larger than 2MB";
+
+        }
 
     }
 }
