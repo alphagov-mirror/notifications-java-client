@@ -31,8 +31,8 @@ export API_SENDING_KEY= # vault_jenkins_notify_client.api_sending_key
 
 
 ## Update version
-Increment the version in the /src/resources/application.properties file.
-Run `./update_version.sh` to update the version number in the pom file and README document.
+Increment the version in the src/main/resources/application.properties file.
+
 
 ## Deploying
 
@@ -42,6 +42,5 @@ Make sure your `~/.m2/settings.xml` file is up to date with the file found at `c
 Then, from the notifications-java-client directory, run
 
 ```shell
-./update_version.sh
 ./deploy.sh
 ```
